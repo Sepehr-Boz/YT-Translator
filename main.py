@@ -5,7 +5,7 @@ from scraper import Translator, WebScraper
 app = Flask(__name__)
 
 translator = Translator()
-scraper = WebScraper(translator)
+scraper = WebScraper()
 
 #return the index page at the start
 @app.route("/")
@@ -18,5 +18,10 @@ def getURL():
     if request.method == "POST":
         print(request.form["url"])
         scraper.ScrapePage(request.form["url"])
+        title = scraper.GetTitle()
+        translator.GetTranscript(request.form["url"])
+        text = translator.Translate("fa")
 
-        return render_template("video.html")
+        vidURL = "https://www.youtube.com/embed/" + translator.GetVideoID(request.form["url"])
+
+        return render_template("video.html", title=title, videoURL=vidURL, text=text)
