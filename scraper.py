@@ -26,8 +26,6 @@ class Translator():
         vidID = self.GetVideoID(url)
         self.transcripts = YouTubeTranscriptApi.list_transcripts(vidID)
 
-        print(self.Translate("fa"))
-
 class WebScraper():
     def __init__(self) -> None:
         self.http = urllib3.PoolManager()

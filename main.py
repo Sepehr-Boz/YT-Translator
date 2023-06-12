@@ -8,10 +8,12 @@ translator = Translator()
 scraper = WebScraper()
 
 
-@app.route('/getmethod', methods=["GET", "POST"])
-def get_javascript_data():
-    print("button clicked retrieved on python server")
-    message = {'greeting':'Hello from Flask!'}
+@app.route('/translate/<lang>', methods=["GET", "POST"])
+def get_javascript_data(lang):
+    print(lang)
+
+    translation = translator.Translate(lang)
+    message = {'lang':translation}
     return jsonify(message)
 
 
@@ -28,7 +30,7 @@ def getURL():
         title = scraper.GetTitle()
         
         translator.GetTranscript(request.form["url"])
-        text = translator.Translate("fa")
+        text = translator.Translate("en")
 
         vidURL = "https://www.youtube.com/embed/" + translator.GetVideoID(request.form["url"])
 
