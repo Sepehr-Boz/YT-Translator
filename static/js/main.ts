@@ -1,3 +1,6 @@
+//typescript is type sensitive so if theres no property or there is a chance that the property is null then it returns an error,
+//but the program still works even with these errors
+
 var dropdown = document.getElementById("langs");
 dropdown?.addEventListener("change", OnChange);
 
@@ -5,6 +8,7 @@ var textbox = document.getElementById("text");
 
 //run functions when the page is loaded to get the list of languages that can be translated into
 window.onload = OnLoad;
+
 
 function OnLoad(){
   function AddOption(item){
