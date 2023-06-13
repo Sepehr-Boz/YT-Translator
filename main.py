@@ -8,8 +8,13 @@ translator = Translator()
 scraper = WebScraper()
 
 
-@app.route('/translate/<lang>', methods=["GET", "POST"])
-def get_javascript_data(lang):
+@app.route("/languages", methods=["GET", "POST"])
+def GetLanguages():
+    languages = translator.GetLanguages()
+    return jsonify(languages)
+
+@app.route("/translate/<lang>", methods=["GET", "POST"])
+def GetTranslation(lang):
     print(lang)
 
     translation = translator.Translate(lang)
@@ -19,12 +24,12 @@ def get_javascript_data(lang):
 
 #return the index page at the start
 @app.route("/")
-def main():
+def Main():
     return render_template("index.html")
 
 #when the details have been entered then run this method
 @app.route("/index", methods=["GET", "POST"])
-def getURL():
+def GetURL():
     if request.method == "POST":
         scraper.ScrapePage(request.form["url"])
         title = scraper.GetTitle()
