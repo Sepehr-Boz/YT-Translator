@@ -36,6 +36,4 @@ def GetURL():
         translator.GetTranscript(request.form["url"])
         text = translator.Translate("en")
 
-        vidURL = "https://www.youtube.com/embed/" + translator.GetVideoID(request.form["url"])
-
-        return render_template("video.html", title=title, videoURL=vidURL, text=text)
+        return render_template("video.html", title=title, text=text)
