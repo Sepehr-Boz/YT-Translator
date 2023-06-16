@@ -1,13 +1,13 @@
 html {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     height: 100%;
     width: 100%;
 
     overflow: hidden;
 
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-columns: 1fr 8fr 1fr;
 }
 
 body{
@@ -17,20 +17,9 @@ body{
     margin: auto;
     width: 100%;
     height: 100%;
-    border: 3px solid green;
+    box-shadow: 0px 10px 20px 0px lightblue;
     padding: 10px;
 
-}
-
-#enterText{
-    color: chartreuse;
-    border: 3px solid pink;
-
-    grid-row: 1;
-}
-
-#url{
-    grid-row: 2;
 }
 
 form{
@@ -39,10 +28,33 @@ form{
     height: 100%;
     text-align: center;
 
-    border: 3px solid black;
+    /* border: 3px solid black; */
 
 
     /*define another grid for the individual elements*/
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#enterText{
+    /* color: chartreuse;
+    border: 3px solid pink; */
+
+    grid-row: 2;
+    grid-column: 2;
+
+    padding: 10%;
+    font-size: xx-large;
+}
+
+#url{
+    grid-row: 3;
+    grid-column: 1 / 4;
+
+    width: 100%;
+    height: 50%;
+    margin: auto;
+
+    font-size: xx-large;
 }

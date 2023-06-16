@@ -11,6 +11,8 @@ window.onload = OnLoad;
 
 
 function OnLoad(){
+  OnChange();
+
   function AddOption(item){
     var option = document.createElement("option");
     option.text = item.language;
@@ -32,6 +34,11 @@ function OnChange(){
   console.log("new lang selected");
 
   var lang = dropdown?.value;
+  if (lang == null || lang == undefined || lang == ""){
+    console.log("lang is null");
+    lang = "en";
+  }
+  
 
   //send a request to the route
   fetch("/translate/" + lang)
@@ -39,9 +46,17 @@ function OnChange(){
     //THEN return the json returned from the page
     return response.json();
   }).then(function (text) {
-    //THEN do whatever with the data
-    if (textbox){
-      textbox.textContent = text.lang;
-    }
+    //THEN add the text to text element
+    OrderText(text.lang);
   });
+}
+
+function OrderText(text){
+  textbox.textContent = "";
+  text.forEach(function(item){
+    textbox.textContent += item + "\r\n";
+  })
+
+  //testing
+  console.log(textbox.textContent);
 }

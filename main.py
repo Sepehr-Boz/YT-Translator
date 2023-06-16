@@ -15,8 +15,7 @@ def GetLanguages():
 
 @app.route("/translate/<lang>", methods=["GET", "POST"])
 def GetTranslation(lang):
-    print(lang)
-
+    #print(lang)
     translation = translator.Translate(lang)
     message = {'lang':translation}
     return jsonify(message)

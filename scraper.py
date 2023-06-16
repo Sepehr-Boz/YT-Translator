@@ -7,11 +7,15 @@ class Translator():
         self.transcript = None
 
     def Translate(self, newLang: str) -> str:
-        translation = self.transcript.translate(newLang).fetch()
+        if newLang != "en":
+            translation = self.transcript.translate(newLang).fetch()
+        else:
+            translation = self.transcript.fetch()
+        print(translation)
 
-        collect = ""
+        collect = []
         for dic in translation:
-            collect += dic["text"]
+            collect.append(dic["text"])
 
         return collect
     
@@ -19,7 +23,7 @@ class Translator():
         url = url.split("v=")
         return url[-1]
 
-    def GetTranscript(self, url: str):
+    def GetTranscript(self, url: str) -> None:
         #the video id is the unique string after v= in the url
         #so split the url by the v= and return the unique string after which will the video id
         vidID = self.GetVideoID(url)
